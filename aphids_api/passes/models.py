@@ -1,7 +1,6 @@
 import uuid as uuid_lib
 
 from django.db import models
-from django.urls import reverse
 
 
 class Pass(models.Model):
@@ -29,6 +28,46 @@ class Pass(models.Model):
     withdrawn_denied_comments = models.TextField()
 
 
+class Person(models.Model):
+    role = models.ForeignKey('Role', on_delete=models.CASCADE)
+    first_name = models.CharField()
+    middle_names = models.CharField()
+    surname = models.CharField()
+    dob = models.DateField()
+    place_of_birth = models.CharField()
+    address = models.ForeignKey('Address', on_delete=models.CASCADE)
+    nationality = models.CharField()
+    passport_no = models.CharField()
+    passport_image = models.BinaryField()
+    driving_license_no = models.CharField()
+    driving_license_scan = models.ImageField()
+    nat_ins = models.CharField()
+    employer = models.ForeignKey('Organisation', on_delete=models.CASCADE)
+    employed_since = models.DateField()
+    line_manager = models.ForeignKey('Person', on_delete=models.CASCADE)
+    telecoms = models.ForeignObject('Telecoms', on_delete=models.CASCADE)
+    biometrics = models.ForeignKey('Biometrics', on_delete=models.CASCADE)
+    vetting_type = models.ForeignKey('Vetting', on_delete=models.CASCADE)
+    vetting_start = models.DateField()
+    vetting_ref = models.CharField()
+    vetting_expiry = models.DateField()
+    vetting_terminated = models.BooleanField()
+    vetting_terminated_comment = models.TextField()
+
+
+class Vetting(models.Model):
+    level = models.CharField()
+    issuing_authority = models.ForeignKey('Organisation', on_delete=models.CASCADE)
+
+
+class Biometrics(models.Model):
+    desc = models.TextField()
+
+
+class Role(models.Model):
+    role = models.CharField()
+
+
 class DiscType(models.Model):
     disc_type = models.CharField()
 
@@ -47,15 +86,12 @@ class Area(models.Model):
 
 
 class ProofIdType(models.Model):
-    pass
+    proof_id_type = models.CharField()
 
 
 class ApplicationStatus(models.Model):
-    pass
-
-
-class Person(models.Model):
-    pass
+    status = models.CharField()
+    urgency = models.IntegerField()
 
 
 class Site(models.Model):
@@ -83,12 +119,21 @@ class Telecoms(models.Model):
 
 
 class Address(models.Model):
-    pass
+    address1 = models.CharField()
+    address2 = models.CharField()
+    address3 = models.CharField()
+    address4 = models.CharField()
+    postal_town = models.CharField()
+    postal_region = models.CharField()
+    county = models.CharField()
+    postcode = models.CharField()
+    since = models.DateField()
+    previous_address = models.ForeignKey('Address')
 
 
 class OrgType(models.Model):
-    pass
+    org_type = models.CharField()
 
 
 class SiteType(models.Model):
-    pass
+    site_type = models.CharField()
