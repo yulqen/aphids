@@ -20,7 +20,7 @@ class Pass(models.Model):
     activation_date = models.DateField()
     expiry_date = models.DateField()
     termination_date = models.DateField()
-    withdrawn_route = models.BooleanField()
+    withdrawn_routine = models.BooleanField()
     withdrawn_date = models.DateField()
     withdrawn_denied = models.BooleanField()
     withdrawn_denied_date = models.DateField()
