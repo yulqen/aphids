@@ -6,7 +6,7 @@ from django.db import models
 class Pass(models.Model):
     uuid = models.UUIDField(
         db_index=True, default=uuid_lib.uuid4, editable=False)
-    site_id = models.ForeignKey('Site', on_delete=models.CASCADE)
+    site = models.ForeignKey('Site', on_delete=models.CASCADE)
     pass_issuer = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes_issued')
     holder = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes')
     application_succeeded = models.BooleanField()
@@ -21,11 +21,11 @@ class Pass(models.Model):
     expiry_date = models.DateField()
     termination_date = models.DateField()
     withdrawn_routine = models.BooleanField()
-    withdrawn_date = models.DateField()
+    withdrawn_date = models.DateField(null=True)
     withdrawn_denied = models.BooleanField()
-    withdrawn_denied_date = models.DateField()
-    withdrawn_denied_disc_type = models.ForeignKey('DiscType', on_delete=models.CASCADE)
-    withdrawn_denied_comments = models.TextField()
+    withdrawn_denied_date = models.DateField(null=True)
+    withdrawn_denied_disc_type = models.ForeignKey('DiscType', on_delete=models.CASCADE, null=True)
+    withdrawn_denied_comments = models.TextField(null=True)
 
 
 class PassStatus(models.Model):
@@ -47,7 +47,7 @@ class Person(models.Model):
     nat_ins = models.CharField(max_length=20)
     employer = models.ForeignKey('Organisation', on_delete=models.CASCADE)
     employed_since = models.DateField()
-    line_manager = models.ForeignKey('Person', on_delete=models.CASCADE)
+    line_manager = models.ForeignKey('Person', on_delete=models.CASCADE, null=True)
     telecoms = models.ForeignKey('Telecoms', on_delete=models.CASCADE)
     biometrics = models.ForeignKey('Biometrics', on_delete=models.CASCADE)
     vetting_type = models.ForeignKey('Vetting', on_delete=models.CASCADE)
@@ -135,7 +135,7 @@ class Address(models.Model):
     county = models.CharField(max_length=20)
     postcode = models.CharField(max_length=20)
     since = models.DateField()
-    previous_address = models.ForeignKey('Address')
+    previous_address = models.ForeignKey('Address', null=True)
 
 
 class OrgType(models.Model):
