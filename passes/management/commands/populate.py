@@ -44,8 +44,20 @@ class Command(BaseCommand):
 
     def _create_pass_status(self):
         ps1 = PassStatus(pass_status="Granted")
+        ps2 = PassStatus(pass_status="Declined")
+        ps3 = PassStatus(pass_status="In Progress")
+        ps4 = PassStatus(pass_status="Considering Revocation")
+        ps5 = PassStatus(pass_status="Barred")
         ps1.save()
+        ps2.save()
+        ps3.save()
+        ps5.save()
+        ps5.save()
         print(f"Creating {ps1}")
+        print(f"Creating {ps2}")
+        print(f"Creating {ps3}")
+        print(f"Creating {ps4}")
+        print(f"Creating {ps5}")
 
     def _create_person(self):
         role1 = Role.objects.get(pk=1)
