@@ -26,7 +26,8 @@ SECRET_KEY = '&dy^ceu(wa(4h!f1kp7p8=mi5la6z&vjxb5ctmp$x(#h0zxs84'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    0.0.0.0,
+    "0.0.0.0",
+    "salty-tor-62302.herokuapp.com",
 ]
 
 
