@@ -40,10 +40,12 @@ class Command(BaseCommand):
             withdrawn_denied_comments=""
         )
         pass1.save()
+        print(f"Creating {pass1}")
 
     def _create_pass_status(self):
         ps1 = PassStatus(pass_status="Granted")
         ps1.save()
+        print(f"Creating {ps1}")
 
     def _create_person(self):
         role1 = Role.objects.get(pk=1)
@@ -101,6 +103,8 @@ class Command(BaseCommand):
         )
         person1.save()
         person2.save()
+        print(f"Creating {person1}")
+        print(f"Creating {person2}")
 
     def _create_vetting(self):
         ia1 = Organisation.objects.get(pk=1)
@@ -119,24 +123,31 @@ class Command(BaseCommand):
         v1.save()
         v2.save()
         v3.save()
+        print(f"Creating {v1}")
+        print(f"Creating {v2}")
+        print(f"Creating {v3}")
 
     def _create_biometrics(self):
         bm1 = Biometrics(
             desc="Biometrics description"
         )
         bm1.save()
+        print(f"Creating {bm1}")
+
 
     def _create_role(self):
         role1 = Role(
             role="A Role"
         )
         role1.save()
+        print(f"Creating {role1}")
 
     def _create_disctype(self):
         dt1 = DiscType(
             disc_type="A type of discipline"
         )
         dt1.save()
+        print(f"Creating {dt1}")
 
     def _create_passprivilege(self):
         area = Area.objects.get(pk=1)
@@ -148,6 +159,7 @@ class Command(BaseCommand):
             daytime_restrictions="Daytime restriction"
         )
         pp1.save()
+        print(f"Creating {pp1}")
 
     def _create_area(self):
         site1 = Site.objects.get(pk=1)
@@ -163,6 +175,8 @@ class Command(BaseCommand):
         )
         area1.save()
         area2.save()
+        print(f"Creating {area1}")
+        print(f"Creating {area2}")
 
     def _create_site(self):
         st1 = SiteType.objects.get(pk=1)
@@ -175,6 +189,7 @@ class Command(BaseCommand):
             managing_comp=mc
         )
         site1.save()
+        print(f"Creating {site1}")
 
     def _create_proofidtype(self):
         pidt1 = ProofIdType(
@@ -189,6 +204,9 @@ class Command(BaseCommand):
         pidt1.save()
         pidt2.save()
         pidt3.save()
+        print(f"Creating {pidt1}")
+        print(f"Creating {pidt2}")
+        print(f"Creating {pidt3}")
 
     def _create_applicationstatus(self):
         as1 = ApplicationStatus(
@@ -201,6 +219,8 @@ class Command(BaseCommand):
         )
         as1.save()
         as2.save()
+        print(f"Creating {as1}")
+        print(f"Creating {as2}")
 
     def _create_organisation(self):
         orgt1 = OrgType.objects.get(pk=1)
@@ -215,6 +235,7 @@ class Command(BaseCommand):
             hmrc_reg="FFFJF1"
         )
         org1.save()
+        print(f"Creating {org1}")
 
     def _create_telecoms(self):
         tc1 = Telecoms(
@@ -241,6 +262,9 @@ class Command(BaseCommand):
         tc1.save()
         tc2.save()
         tc3.save()
+        print(f"Creating{tc1}")
+        print(f"Creating{tc2}")
+        print(f"Creating{tc3}")
 
     def _create_address(self):
         ad1 = Address(
@@ -282,18 +306,23 @@ class Command(BaseCommand):
         ad1.save()
         ad2.save()
         ad3.save()
+        print(f"Creating {ad1}")
+        print(f"Creating {ad2}")
+        print(f"Creating {ad3}")
 
     def _create_orgtype(self):
         orgt1 = OrgType(
             org_type="Human Resources"
         )
         orgt1.save()
+        print(f"Creating {orgt1}")
 
     def _create_sitetype(self):
         st1 = SiteType(
             site_type="Transport Hub"
         )
         st1.save()
+        print(f"Creating {st1}")
 
     def handle(self, *args, **options):
         self._create_address()
