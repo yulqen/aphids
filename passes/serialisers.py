@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from .models import Person, Pass, PassStatus
+from .models import PassStatus
+
+from django.contrib.auth.models import User
+
+
+class UserSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('__all__')
 
 
 class PassStatusSerialiser(serializers.ModelSerializer):
@@ -7,14 +15,3 @@ class PassStatusSerialiser(serializers.ModelSerializer):
         model = PassStatus
         fields = ('__all__')
 
-
-#class PassSerialiser(serializers.ModelSerializer):
-#    class Meta:
-#        model = Pass
-#        fields = ('__all__')
-#
-#
-#class PersonSerialiser(serializers.ModelSerializer):
-#    class Meta:
-#        model = Person
-#        fields = ('__all__')

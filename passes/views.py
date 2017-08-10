@@ -1,6 +1,17 @@
 from passes.models import PassStatus
-from passes.serialisers import PassStatusSerialiser
+from passes.serialisers import PassStatusSerialiser, UserSerialiser
 from rest_framework import generics
+from django.contrib.auth.models import User
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerialiser
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerialiser
 
 
 class PassStatusList(generics.ListCreateAPIView):
