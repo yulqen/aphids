@@ -1,43 +1,23 @@
 from passes.models import PassStatus
 from passes.serialisers import PassStatusSerialiser
-from rest_framework import mixins
 from rest_framework import generics
 
 
-class PassStatusList(mixins.ListModelMixin,
-                     mixins.CreateModelMixin,
-                     generics.GenericAPIView):
+class PassStatusList(generics.ListCreateAPIView):
     """
     List of pass status objects, or create new pass status.
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class PassStatusDetail(mixins.RetrieveModelMixin,
-                       mixins.UpdateModelMixin,
-                       mixins.DestroyModelMixin,
-                       generics.GenericAPIView):
+class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a snippet instance.
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
 # OLD FUNCTION BASED VIEWS LEFT FOR POSTERITY
 # @api_view(['GET', 'POST'])
