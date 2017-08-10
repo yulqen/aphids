@@ -9,7 +9,7 @@ then
 elif [ "$1" == 'staging' ];
 then
     echo "Setting to staging settings..."
-    SETTINGS='--setings=aphids_api.settings.staging'
+    SETTINGS='--settings=aphids_api.settings.staging'
 else
     echo "You must include either 'local' or 'staging'"
     exit 1
