@@ -1,6 +1,7 @@
 from passes.models import PassStatus
 from passes.serialisers import PassStatusSerialiser, UserSerialiser
 from rest_framework import generics
+from rest_framework import permissions
 from django.contrib.auth.models import User
 
 
@@ -20,6 +21,7 @@ class PassStatusList(generics.ListCreateAPIView):
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -28,6 +30,7 @@ class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 # OLD FUNCTION BASED VIEWS LEFT FOR POSTERITY
