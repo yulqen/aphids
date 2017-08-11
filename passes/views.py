@@ -1,8 +1,46 @@
-from passes.models import PassStatus
-from passes.serialisers import PassStatusSerialiser, UserSerialiser
+from passes.models import (PassStatus, Person, ApplicationStatus, ProofIdType)
+from passes.serialisers import (PassStatusSerialiser, UserSerialiser,
+                                PersonSerialiser, ApplicationStatusSerialiser,
+                                ProofIdTypeSerialiser)
 from rest_framework import generics
 from rest_framework import permissions
 from django.contrib.auth.models import User
+
+
+class ProofIdTypeList(generics.ListAPIView):
+    queryset = ProofIdType.objects.all()
+    serializer_class = ProofIdTypeSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ProofIdTypeDetail(generics.RetrieveAPIView):
+    queryset = ProofIdType.objects.all()
+    serializer_class = ProofIdTypeSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ApplicationStatusList(generics.ListAPIView):
+    queryset = ApplicationStatus.objects.all()
+    serializer_class = ApplicationStatusSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ApplicationStatusDetail(generics.ListAPIView):
+    queryset = ApplicationStatus.objects.all()
+    serializer_class = ApplicationStatusSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PersonList(generics.ListAPIView):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PersonDetail(generics.RetrieveAPIView):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerialiser
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class UserList(generics.ListAPIView):
@@ -31,6 +69,9 @@ class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+
 
 
 # OLD FUNCTION BASED VIEWS LEFT FOR POSTERITY
