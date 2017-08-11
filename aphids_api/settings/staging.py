@@ -10,5 +10,5 @@ ALLOWED_HOSTS = ['salty-tor-62302.herokuapp.com']
 
 DEBUG = False
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = 'static/'
 STATIC_URL = '/static/'
