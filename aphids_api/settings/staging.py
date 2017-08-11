@@ -14,6 +14,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'static_root'
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    BASE_DIR / 'static',
-)
+
+# we are removing this until we need to store additional static files
+# which we probably won't.
+# see https://stackoverflow.com/questions/19323513/heroku-django-oserror-no-such-file-or-directory-app-myappname-static#19323823
+
+#STATICFILES_DIRS = (
+#    BASE_DIR / 'static',
+#)
