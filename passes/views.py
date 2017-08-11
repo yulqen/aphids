@@ -19,13 +19,13 @@ class ProofIdTypeDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class ApplicationStatusList(generics.ListAPIView):
+class ApplicationStatusList(generics.ListCreateAPIView):
     queryset = ApplicationStatus.objects.all()
     serializer_class = ApplicationStatusSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class ApplicationStatusDetail(generics.ListAPIView):
+class ApplicationStatusDetail(generics.ListCreateAPIView):
     queryset = ApplicationStatus.objects.all()
     serializer_class = ApplicationStatusSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
