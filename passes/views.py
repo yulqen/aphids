@@ -7,13 +7,13 @@ from rest_framework import permissions
 from django.contrib.auth.models import User
 
 
-class ProofIdTypeList(generics.ListAPIView):
+class ProofIdTypeList(generics.ListCreateAPIView):
     queryset = ProofIdType.objects.all()
     serializer_class = ProofIdTypeSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class ProofIdTypeDetail(generics.RetrieveAPIView):
+class ProofIdTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProofIdType.objects.all()
     serializer_class = ProofIdTypeSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -25,30 +25,30 @@ class ApplicationStatusList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class ApplicationStatusDetail(generics.ListCreateAPIView):
+class ApplicationStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ApplicationStatus.objects.all()
     serializer_class = ApplicationStatusSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class PersonList(generics.ListAPIView):
+class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class PersonDetail(generics.RetrieveAPIView):
+class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerialiser
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
-class UserList(generics.ListAPIView):
+class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerialiser
 
 
-class UserDetail(generics.RetrieveAPIView):
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerialiser
 
