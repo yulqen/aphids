@@ -32,4 +32,5 @@ urllib3==1.22
 virtualenv==15.1.0
 virtualfish==1.0.5
 wcwidth==0.1.7
+whitenoise==3.3.0
 yapf==0.16.3

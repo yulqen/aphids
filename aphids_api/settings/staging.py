@@ -10,9 +10,9 @@ ALLOWED_HOSTS = ['salty-tor-62302.herokuapp.com']
 
 DEBUG = False
 
-MEDIA_ROOT = BASE_DIR / 'media'
+# not using for now
+#MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'static_root'
-STATIC_URL = '/static/'
 
 
 # we are removing this until we need to store additional static files
