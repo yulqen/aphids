@@ -1,4 +1,5 @@
 from .local import *
+import os
 import dj_database_url
 
 # Heroku stuff for database
@@ -9,7 +10,7 @@ ALLOWED_HOSTS = ['salty-tor-62302.herokuapp.com']
 
 DEBUG = False
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(os.path.pardir))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
