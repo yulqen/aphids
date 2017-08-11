@@ -9,6 +9,8 @@ ALLOWED_HOSTS = ['salty-tor-62302.herokuapp.com']
 
 DEBUG = False
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
