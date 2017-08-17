@@ -22,3 +22,9 @@ STATIC_ROOT = BASE_DIR / 'static_root'
 #STATICFILES_DIRS = (
 #    BASE_DIR / 'static',
 #)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_FILES_STORAGES = 'storages.backends.s3boto3.s3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'aphids-test'
+
+STATIC_URL = "http://" + AWS_STORAGE_BUCKET_NAME + ".s3.amazonaws.com/"
