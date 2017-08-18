@@ -33,6 +33,7 @@ class PersonSerialiser(serializers.ModelSerializer):
     class Meta:
         model = Person
         fields = ('__all__')
+        lookup_field = 'person'
 
 
 class PassSerialiser(serializers.ModelSerializer):

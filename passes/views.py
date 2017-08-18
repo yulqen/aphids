@@ -5,11 +5,12 @@ from passes.serialisers import (PassStatusSerialiser, UserSerialiser,
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes
 from rest_framework.reverse import reverse
 from django.contrib.auth.models import User
 
 
+@authentication_classes(['IsAuthenticatedOrReadOnly'])
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -22,37 +23,38 @@ def api_root(request, format=None):
 class ProofIdTypeList(generics.ListCreateAPIView):
     queryset = ProofIdType.objects.all()
     serializer_class = ProofIdTypeSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ProofIdTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProofIdType.objects.all()
     serializer_class = ProofIdTypeSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ApplicationStatusList(generics.ListCreateAPIView):
     queryset = ApplicationStatus.objects.all()
     serializer_class = ApplicationStatusSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ApplicationStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ApplicationStatus.objects.all()
     serializer_class = ApplicationStatusSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class PersonList(generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
+    lookup_field = 'person'
 
 
 class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class UserList(generics.ListCreateAPIView):
@@ -71,7 +73,7 @@ class PassStatusList(generics.ListCreateAPIView):
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -80,7 +82,7 @@ class PassStatusDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = PassStatus.objects.all()
     serializer_class = PassStatusSerialiser
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 

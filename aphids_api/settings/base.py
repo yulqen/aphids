@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'storages',
     'rest_framework',
-    'rest_framework_swagger',
     'passes.apps.PassesConfig',
 ]
 
