@@ -15,8 +15,9 @@ from django.contrib.auth.models import User
 def api_root(request, format=None):
     return Response({
         'persons': reverse('person-list', request=request, format=format),
-        'applicationstatuses': reverse('application-status-list', request=request, format=format),
+        'application-statuses': reverse('application-status-list', request=request, format=format),
         'proofidtype': reverse('proof-id-type-list', request=request, format=format),
+        'pass-statuses': reverse('pass-status-list', request=request, format=format),
     })
 
 
