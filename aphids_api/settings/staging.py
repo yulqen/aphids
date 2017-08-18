@@ -1,3 +1,5 @@
+# settings/staging.py
+
 from .local import *
 import os
 import dj_database_url
@@ -27,10 +29,8 @@ STATIC_ROOT = BASE_DIR / 'static_root'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'aphids-test'
-AWS_ACCESS_KEY_ID = 'AKIAJ32LNH6Z67GOLN5Q'
-AWS_SECRET_ACCESS_KEY = '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'
-#AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-#AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
 
