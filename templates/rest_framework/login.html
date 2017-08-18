@@ -1,0 +1,7 @@
+{% extends "rest_framework/login_base.html" %}
+{% block bootstrap_theme %}
+    {% load static %}
+    <link rel="stylesheet" href={% static "passes/bootstrap.min.css" %} type="text/css">
+{% endblock %}
+
+{% block bootstrap_navbar_variant %}{% endblock %}
