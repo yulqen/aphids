@@ -3,6 +3,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from passes import views
 
 urlpatterns = [
+    url(r'^$', views.api_root),
     url(r'^pass-status/$', views.PassStatusList.as_view()),
     url(r'^pass-status/(?P<pk>[0-9]+)/$', views.PassStatusDetail.as_view()),
     url(r'^person/$', views.PersonList.as_view()),

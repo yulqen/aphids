@@ -4,7 +4,19 @@ from passes.serialisers import (PassStatusSerialiser, UserSerialiser,
                                 ProofIdTypeSerialiser)
 from rest_framework import generics
 from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework.reverse import reverse
 from django.contrib.auth.models import User
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'persons': reverse('person-list', request=request, format=format),
+        'applicationstatuses': reverse('application-status-list', request=request, format=format),
+        'proofidtype': reverse('proof-id-type-list', request=request, format=format),
+    })
 
 
 class ProofIdTypeList(generics.ListCreateAPIView):
