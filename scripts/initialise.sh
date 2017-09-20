@@ -62,7 +62,7 @@ then
     echo "Doing migrations and populating with base data...."
     migrate
 else
-    echo "You now need to ./manage.py makemigrations; ./manage.py migrate; ./manage.py populate manually."
+    echo "You now need to ./manage.py makemigrations; ./manage.py migrate; ./manage.py createsuperuser; ./manage.py populate manually."
     echo "If you need to do so locally, ensure you use '--settings=aphids_api.settings.local'."
 fi
 

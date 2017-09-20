@@ -39,6 +39,7 @@ class Person(models.Model):
     surname = models.CharField(max_length=20)
     dob = models.DateField()
     place_of_birth = models.CharField(max_length=20)
+    country_of_birth = models.CharField(max_length=50)
     address = models.ForeignKey('Address', on_delete=models.CASCADE)
     nationality = models.CharField(max_length=20)
     passport_no = models.CharField(max_length=20)
