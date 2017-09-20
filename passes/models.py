@@ -37,6 +37,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=20)
     middle_names = models.CharField(max_length=20)
     surname = models.CharField(max_length=20)
+    previous_surname = models.CharField(max_length=50)
     dob = models.DateField()
     place_of_birth = models.CharField(max_length=20)
     country_of_birth = models.CharField(max_length=50)
