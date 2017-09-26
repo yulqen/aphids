@@ -5,7 +5,7 @@ from django.db import models
 
 class Pass(models.Model):
     uuid = models.UUIDField(
-        db_index=True, default=uuid_lib.uuid4, editable=False)
+    db_index=True, default=uuid_lib.uuid4, editable=False)
     site = models.ForeignKey('Site', on_delete=models.CASCADE)
     pass_issuer = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes_issued')
     holder = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes')
