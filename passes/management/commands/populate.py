@@ -3,12 +3,21 @@ from django.core.management.base import BaseCommand
 import uuid as uuid_lib
 
 from ...models import Pass, Site, PassStatus, Person, Vetting, Biometrics, Role, DiscType, PassPrivilege, \
-    Area, ProofIdType, ApplicationStatus, Organisation, Telecoms, Address, OrgType, SiteType
+    Area, ProofIdType, ApplicationStatus, Organisation, Telecoms, Address, OrgType, SiteType, PassType
 
 
 class Command(BaseCommand):
     args = ''
     help = 'Populate the database with test data.'
+
+    def _create_pass_type(self):
+        pt1 = PassType(pass_type="Gold Pass")
+        pt2 = PassType(pass_type="Silver Pass")
+        pt3 = PassType(pass_type="Bronze Pass")
+        pt1.save()
+        pt2.save()
+        pt3.save()
+        print(f"Creating {pt1}, {pt2} and {pt3}")
 
     def _create_pass(self):
         sit1 = Site.objects.get(pk=1)
@@ -359,3 +368,4 @@ class Command(BaseCommand):
         self._create_disctype()
         self._create_pass_status()
         self._create_pass()
+        self._create_pass_type()

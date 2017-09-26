@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^application-status/(?P<pk>[0-9]+)/$', views.ApplicationStatusDetail.as_view()),
     url(r'^proof-id-type/$', views.ProofIdTypeList.as_view(), name='proof-id-type-list'),
     url(r'^proof-id-type/(?P<pk>[0-9]+)/$', views.ProofIdTypeDetail.as_view()),
+    url(r'^pass-type/$', views.PassTypeList.as_view(), name='pass-type-list'),
+    url(r'^pass-type/(?P<pk>[0-9]+)/$', views.PassTypeDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

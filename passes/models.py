@@ -1,6 +1,10 @@
 import uuid as uuid_lib
 
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 
 class Pass(models.Model):
@@ -26,6 +30,10 @@ class Pass(models.Model):
     withdrawn_denied_date = models.DateField(null=True)
     withdrawn_denied_disc_type = models.ForeignKey('DiscType', on_delete=models.CASCADE, null=True)
     withdrawn_denied_comments = models.TextField(null=True)
+
+
+class PassType(models.Model):
+    pass_type = models.CharField(max_length=20)
 
 
 class PassStatus(models.Model):
@@ -146,3 +154,9 @@ class OrgType(models.Model):
 
 class SiteType(models.Model):
     site_type = models.CharField(max_length=20)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
