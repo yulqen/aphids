@@ -30,3 +30,7 @@ class DjangoRestFrameworkTests(TestCase):
         # Are both types in content?
         self.assertContains(response, 'The Gold Standard!')
         self.assertContains(response, 'The Silver Standard!')
+
+    def test_detail(self):
+        response = self.client.get('/api/pass-type/1/')
+        self.assertContains(response, 'The Gold Standard!')
