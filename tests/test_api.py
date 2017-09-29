@@ -1,16 +1,12 @@
-import json
-
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 
 from passes.models import PassType
-from passes.views import PassTypeList, PassTypeDetail
 
 
 class DjangoRestFrameworkTests(TestCase):
-
     def setUp(self):
 
         User.objects.create_user(username='test_lemon', password='lemon')
@@ -21,8 +17,8 @@ class DjangoRestFrameworkTests(TestCase):
         PassType.objects.get_or_create(pass_type='The Silver Standard!')
 
         self.create_read_url = reverse('pass-type-list')
-        self.read_update_delete_url = reverse('pass-type-detail', kwargs={'pk': 1})
-
+        self.read_update_delete_url = reverse(
+            'pass-type-detail', kwargs={'pk': 1})
 
     def test_list(self):
         response = self.client.get('/api/pass-type/')
@@ -34,3 +30,9 @@ class DjangoRestFrameworkTests(TestCase):
     def test_detail(self):
         response = self.client.get('/api/pass-type/1/')
         self.assertContains(response, 'The Gold Standard!')
+
+    def test_post_pass_type(self):
+        self.client.post(
+            '/api/pass-type/', {'pass_type': 'Mungler'}, format='json')
+        response = self.client.get('/api/pass-type/')
+        self.assertContains(response, 'Mungler')
