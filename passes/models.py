@@ -9,15 +9,19 @@ from rest_framework.authtoken.models import Token
 
 class Pass(models.Model):
     uuid = models.UUIDField(
-    db_index=True, default=uuid_lib.uuid4, editable=False)
+        db_index=True, default=uuid_lib.uuid4, editable=False)
     site = models.ForeignKey('Site', on_delete=models.CASCADE)
-    pass_issuer = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes_issued')
-    holder = models.ForeignKey('Person', on_delete=models.CASCADE, related_name='passes')
+    pass_issuer = models.ForeignKey(
+        'Person', on_delete=models.CASCADE, related_name='passes_issued')
+    holder = models.ForeignKey(
+        'Person', on_delete=models.CASCADE, related_name='passes')
     application_succeeded = models.BooleanField()
     holder_staff_number = models.CharField(max_length=20)
-    application_status = models.ForeignKey('ApplicationStatus', on_delete=models.CASCADE)
+    application_status = models.ForeignKey(
+        'ApplicationStatus', on_delete=models.CASCADE)
     proof_of_id_provided = models.BooleanField()
-    proof_of_id_type = models.ForeignKey('ProofIdType', on_delete=models.CASCADE)
+    proof_of_id_type = models.ForeignKey(
+        'ProofIdType', on_delete=models.CASCADE)
     pass_privileges = models.ManyToManyField('PassPrivilege')
     pass_status = models.ForeignKey('PassStatus', on_delete=models.CASCADE)
     application_date = models.DateField()
@@ -28,7 +32,8 @@ class Pass(models.Model):
     withdrawn_date = models.DateField(null=True)
     withdrawn_denied = models.BooleanField()
     withdrawn_denied_date = models.DateField(null=True)
-    withdrawn_denied_disc_type = models.ForeignKey('DiscType', on_delete=models.CASCADE, null=True)
+    withdrawn_denied_disc_type = models.ForeignKey(
+        'DiscType', on_delete=models.CASCADE, null=True)
     withdrawn_denied_comments = models.TextField(null=True)
 
 

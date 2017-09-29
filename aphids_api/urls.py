@@ -28,7 +28,7 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    url(r'api-token-auth/', views.obtain_auth_token)
+    url(r'^api-token-auth/', views.obtain_auth_token)
 ]
 
 if not settings.DEBUG:
