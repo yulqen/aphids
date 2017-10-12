@@ -36,6 +36,7 @@ drop() {
     echo "DROP TABLE passes_telecoms CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE passes_vetting CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE passes_proofidtype CASCADE;" | ./manage.py dbshell $SETTINGS
+    echo "DROP TABLE passes_passtype CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE django_content_type CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE django_admin_log CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE django_migrations CASCADE;" | ./manage.py dbshell $SETTINGS
@@ -46,6 +47,7 @@ drop() {
     echo "DROP TABLE auth_user CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE auth_user_groups CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "DROP TABLE auth_user_user_permissions CASCADE;" | ./manage.py dbshell $SETTINGS
+    echo "DROP TABLE authtoken_token CASCADE;" | ./manage.py dbshell $SETTINGS
     echo "Tables dropped."
     echo
 }
