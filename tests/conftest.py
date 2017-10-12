@@ -12,3 +12,12 @@ def django_db_setup():
         'HOST': 'localhost',
         'PORT': '5432',
     }
+
+
+@pytest.fixture(scope='session')
+def client():
+    """Overriding pytest-django client with DRF one."""
+
+    from rest_framework.test import APIClient
+
+    return APIClient()
