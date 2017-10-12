@@ -3,8 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 
-from passes.models import PassType
-
 
 class DjangoRestFrameworkTests(TestCase):
 
@@ -20,14 +18,14 @@ class DjangoRestFrameworkTests(TestCase):
         self.read_update_delete_url = reverse(
             'pass-type-detail', kwargs={'pk': 1})
 
-    def test_list(self):
+    def test_pass_type_list(self):
         response = self.client.get('/api/pass-type/')
 
         # Are both types in content?
         self.assertContains(response, 'Gold Pass')
         self.assertContains(response, 'Silver Pass')
 
-    def test_detail(self):
+    def test_pass_type_detail(self):
         response = self.client.get('/api/pass-type/1/')
         self.assertContains(response, 'Gold Pass')
         self.assertNotContains(response, 'Silver Pass')
