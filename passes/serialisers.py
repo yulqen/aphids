@@ -1,8 +1,14 @@
 from rest_framework import serializers
 from .models import (PassStatus, Pass, Person, ApplicationStatus, ProofIdType,
-                     PassPrivilege, DiscType, PassType)
+                     PassPrivilege, DiscType, PassType, Pass)
 
 from django.contrib.auth.models import User
+
+
+class PassSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = Pass
+        fields = ('__all__')
 
 
 class DiscTypeSerialiser(serializers.ModelSerializer):
@@ -34,12 +40,6 @@ class PersonSerialiser(serializers.ModelSerializer):
         model = Person
         fields = ('__all__')
         lookup_field = 'person'
-
-
-class PassSerialiser(serializers.ModelSerializer):
-    class Meta:
-        model = Pass
-        fields = ('__all__')
 
 
 class PassTypeSerialiser(serializers.ModelSerializer):

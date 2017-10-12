@@ -1,7 +1,8 @@
-from passes.models import (PassStatus, Person, ApplicationStatus, ProofIdType, PassType)
+from passes.models import (Pass, PassStatus, Person, ApplicationStatus, ProofIdType, PassType)
 from passes.serialisers import (PassStatusSerialiser, UserSerialiser,
                                 PersonSerialiser, ApplicationStatusSerialiser,
-                                ProofIdTypeSerialiser, PassTypeSerialiser)
+                                ProofIdTypeSerialiser, PassTypeSerialiser,
+                                PassSerialiser)
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -19,7 +20,20 @@ def api_root(request, format=None):
         'proofidtype': reverse('proof-id-type-list', request=request, format=format),
         'pass-statuses': reverse('pass-status-list', request=request, format=format),
         'pass-types': reverse('pass-type-list', request=request, format=format),
+        'passes': reverse('pass-list', request=request, format=format),
     })
+
+
+class PassDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Pass.objects.all()
+    serializer_class = PassSerialiser
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class PassList(generics.ListCreateAPIView):
+    queryset = Pass.objects.all()
+    serializer_class = PassSerialiser
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class ProofIdTypeList(generics.ListCreateAPIView):

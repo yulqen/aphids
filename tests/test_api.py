@@ -6,6 +6,30 @@ from rest_framework.authtoken.models import Token
 pytestmark = pytest.mark.django_db
 
 
+class TestPassAPI:
+    def test_get_pass_detail_authenticated(self, client):
+        client.login(username='lemon', password='lemonlemon')
+        response = client.get('/api/pass/1/')
+        assert response.status_code == 200
+        assert response.data['application_succeeded'] is True
+
+
+    def test_get_pass_list_authenticated(self, client):
+        client.login(username='lemon', password='lemonlemon')
+        response = client.get('/api/pass/')
+        assert response.status_code == 200
+        assert response.data[0]['holder_staff_number'] == 'STAFFNO001'
+
+
+    def test_get_pass_detail_unauth(self, client):
+        response = client.get('/api/pass/1/')
+        assert response.status_code == 403
+
+    def test_get_pass_list_unauth(self, client):
+        response = client.get('/api/pass/')
+        assert response.status_code == 403
+
+
 class TestPersonAPI:
 
     def test_my_user(self):
@@ -34,3 +58,18 @@ class TestPersonAPI:
         assert response.status_code == 200
         assert response.data[0]['first_name'] == 'Stanley'
         assert response.data[1]['first_name'] == 'Jim'
+
+
+    def test_get_person_detail_unauth(self, client):
+        response = client.get('/api/person/1/')
+        assert response.status_code == 403
+
+
+    def test_get_person_detail_auth(self, client):
+        token = Token.objects.get(user__username='lemon')
+        client.login(username='lemon', password='lemonlemon')
+        client.credentials(HTTP_AUTHORIZATION='Token' + token.key)
+        response = client.get('/api/person/2/')
+        assert response.status_code == 200
+        assert response.data['first_name'] == 'Jim'
+
