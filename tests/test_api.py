@@ -7,14 +7,14 @@ from passes.models import PassType
 
 
 class DjangoRestFrameworkTests(TestCase):
+
+    fixtures = ['test_data.json']
+
     def setUp(self):
 
         User.objects.create_user(username='test_lemon', password='lemon')
         self.client = APIClient()
         self.client.login(username='test_lemon', password='lemon')
-
-        PassType.objects.get_or_create(pass_type='The Gold Standard!')
-        PassType.objects.get_or_create(pass_type='The Silver Standard!')
 
         self.create_read_url = reverse('pass-type-list')
         self.read_update_delete_url = reverse(
@@ -24,12 +24,13 @@ class DjangoRestFrameworkTests(TestCase):
         response = self.client.get('/api/pass-type/')
 
         # Are both types in content?
-        self.assertContains(response, 'The Gold Standard!')
-        self.assertContains(response, 'The Silver Standard!')
+        self.assertContains(response, 'Gold Pass')
+        self.assertContains(response, 'Silver Pass')
 
     def test_detail(self):
         response = self.client.get('/api/pass-type/1/')
-        self.assertContains(response, 'The Gold Standard!')
+        self.assertContains(response, 'Gold Pass')
+        self.assertNotContains(response, 'Silver Pass')
 
     def test_post_pass_type(self):
         self.client.post(
