@@ -2,6 +2,7 @@ import pytest
 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from rest_framework import status
 
 pytestmark = pytest.mark.django_db
 
@@ -72,4 +73,14 @@ class TestPersonAPI:
         response = client.get('/api/person/2/')
         assert response.status_code == 200
         assert response.data['first_name'] == 'Jim'
+
+    def test_post_person_auth(self, client, person_test_dict):
+        token = Token.objects.get(user__username='lemon')
+        client.login(username='lemon', password='lemonlemon')
+        client.credentials(HTTP_AUTHORIZATION='Token' + token.key)
+        response = client.post('/api/person/', data=person_test_dict, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
+
+
+
 
