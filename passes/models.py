@@ -36,13 +36,22 @@ class Pass(models.Model):
         'DiscType', on_delete=models.CASCADE, null=True)
     withdrawn_denied_comments = models.TextField(null=True)
 
+    def __str__(self):
+        return f"Site: {self.site} | Holder: {self.holder}"
+
 
 class PassType(models.Model):
     pass_type = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.pass_type}"
+
 
 class PassStatus(models.Model):
     pass_status = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.pass_status}"
 
 
 class Person(models.Model):
@@ -72,22 +81,38 @@ class Person(models.Model):
     vetting_terminated = models.BooleanField()
     vetting_terminated_comment = models.TextField()
 
+    def __str__(self):
+        return f"{self.first_name} {self.middle_names} {self.surname}"
+
 
 class Vetting(models.Model):
     level = models.CharField(max_length=20)
     issuing_authority = models.ForeignKey('Organisation', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.level}"
+
 
 class Biometrics(models.Model):
     desc = models.TextField()
+
+    def __str__(self):
+        return f"{self.desc}"
 
 
 class Role(models.Model):
     role = models.CharField(max_length=20)
 
 
+    def __str__(self):
+        return f"{self.role}"
+
+
 class DiscType(models.Model):
     disc_type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.disc_type}"
 
 
 class PassPrivilege(models.Model):
@@ -98,20 +123,32 @@ class PassPrivilege(models.Model):
     access_to_aircraft = models.BooleanField()
     daytime_restrictions = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.area_allowed}"
+
 
 class Area(models.Model):
     name = models.CharField(max_length=20)
     sensitive = models.BooleanField()
     site = models.ForeignKey('Site', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class ProofIdType(models.Model):
     proof_id_type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.proof_id_type}"
 
 
 class ApplicationStatus(models.Model):
     status = models.CharField(max_length=20)
     urgency = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.status}"
 
 
 class Site(models.Model):
@@ -122,6 +159,9 @@ class Site(models.Model):
     managing_comp = models.ForeignKey(
         'Organisation', on_delete=models.CASCADE, related_name="sites_managed")
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Organisation(models.Model):
     org_type = models.ForeignKey('OrgType', on_delete=models.CASCADE)
@@ -131,6 +171,9 @@ class Organisation(models.Model):
     companies_hse_reg = models.CharField(max_length=20)
     hmrc_reg = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Telecoms(models.Model):
     landline = models.CharField(max_length=20)
@@ -138,6 +181,9 @@ class Telecoms(models.Model):
     mobile2 = models.CharField(max_length=20)
     email1 = models.EmailField()
     email2 = models.EmailField()
+
+    def __str__(self):
+        return f"Phone: {self.landline}"
 
 
 class Address(models.Model):
@@ -152,13 +198,22 @@ class Address(models.Model):
     since = models.DateField()
     previous_address = models.ForeignKey('Address', null=True)
 
+    def __str__(self):
+        return f"{self.address1} | {self.postal_town}"
+
 
 class OrgType(models.Model):
     org_type = models.CharField(max_length=20)
 
+    def __str__(self):
+        return f"{self.org_type}"
+
 
 class SiteType(models.Model):
     site_type = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f"{self.site_type}"
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
