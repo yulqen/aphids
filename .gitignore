@@ -77,3 +77,4 @@ staticfiles/
 .cache/
 
 .idea/
+aphids_aws_credentials.csv
